@@ -1,6 +1,7 @@
 import Customer.Person;
 import Database.DataBasePerson;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class KYC_Terminal {
@@ -8,6 +9,9 @@ public class KYC_Terminal {
     private static DataBasePerson dataBasePerson = new DataBasePerson();
 
     public static void main(String[] args) {
+
+        initDatabase();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome! Press (c) for list of commands");
         while (true) {
@@ -20,7 +24,7 @@ public class KYC_Terminal {
             } else if (input.toLowerCase().equals("s")) {
                 searchPerson();
             } else if (input.toLowerCase().equals("p")) {
-                printDatabase();
+                dataBasePerson.printDatabase();
             } else if (input.toLowerCase().equals("c")) {
                 commands();
             } else {
@@ -95,12 +99,37 @@ public class KYC_Terminal {
     }
 
     private static void searchUnknown() {
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.println("Search using: Name (n), birth (b), Country (c). Quit (q)");
+            String input = scanner.nextLine();
+            if(input.toLowerCase().equals("q")){
+                break;
+            }
+            if(input.toLowerCase().equals("n")){
+                System.out.println("Enter a name you would like to search: ");
+                String name = scanner.nextLine();
+                ArrayList<Person> foundNames = dataBasePerson.nameSearch(name);
+                System.out.println("There where " + foundNames.size() + " results for " + name);
+                for(Person p : foundNames){
+                    p.printInfo();
+                }
+                break;
+            }
+            else{
+                System.out.println("Please try again");
+            }
+        }
 
     }
 
-    private static void printDatabase() {
-        dataBasePerson.printDatabase();
+    private static void initDatabase(){
+        Person stian = new Person("Stian Munkejord", "04-08-2001", "Norway", false);
+        dataBasePerson.addNew(1, stian);
+        Person erna = new Person("Erna Solberg", "24-02-1961", "Norway", true);
+        dataBasePerson.addNew(2,erna);
     }
+
 
 
 }

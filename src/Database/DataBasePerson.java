@@ -2,6 +2,8 @@ package Database;
 
 import Customer.Person;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -56,6 +58,20 @@ public class DataBasePerson implements IDataBase{
     }
 
     public void printDatabase(){
-        System.out.println((dataBase.values()));
+        for(int i : dataBase.keySet()){
+            dataBase.get(i).printInfo();
+            System.out.println();
+        }
+    }
+
+    public ArrayList<Person> nameSearch(String name){
+        ArrayList<Person> search = new ArrayList<>();
+        for (int i : dataBase.keySet()){
+            String dataName = dataBase.get(i).getName();
+            if(dataName.contains(name)){
+                search.add(dataBase.get(i));
+            }
+        }
+        return search;
     }
 }
