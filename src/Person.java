@@ -4,6 +4,7 @@ public class Person implements ICustomer {
     String org;
     boolean isPep;
 
+
     public void Person(String name, String org, boolean isPep){
 
         this.name = name;
