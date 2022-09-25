@@ -11,13 +11,17 @@ public class MapTest {
 
         HashMap<String, List<String>> hash = new HashMap<>();
 
-        ArrayList<String> list1 = new ArrayList<>();
+        ArrayList<String> list1 = new ArrayList<>(20);
+
+        System.out.println(list1.size());
+        System.out.println(list1);
 
         list1.add("Stian Munkejord");
         list1.add("Norge");
         list1.add("04.08.01");
+        list1.set(5, "47168833");
 
-        ArrayList<String> list2 = new ArrayList<>();
+        ArrayList<String> list2 = new ArrayList<>(20);
 
         list2.add("Stian Munkejord");
         list2.add("Norge");
