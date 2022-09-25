@@ -10,7 +10,7 @@ import java.util.Random;
 public class DataBasePerson implements IDataBase{
     private HashMap<Integer, Person> dataBase = new HashMap<Integer, Person>();
     private Random random = new Random();
-    private int idRange;
+    private int idRange = 10000;
 
     @Override
     public boolean addNew(int id, Person data){
@@ -59,6 +59,7 @@ public class DataBasePerson implements IDataBase{
 
     public void printDatabase(){
         for(int i : dataBase.keySet()){
+            System.out.println("ID: " + i);
             dataBase.get(i).printInfo();
             System.out.println();
         }

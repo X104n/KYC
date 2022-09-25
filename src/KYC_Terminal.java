@@ -69,8 +69,27 @@ public class KYC_Terminal {
         }
 
         Person newPerson = new Person(name, birth, country, isPep);
-        dataBasePerson.addNew(100, newPerson);
-        System.out.println("Thank you, optional information is in progress");
+
+        System.out.println("Would you like to give this person an ID? (y/n)");
+        String input = scanner.nextLine();
+        if(input.toLowerCase().equals("y")){
+            System.out.println("Please write an ID. The ID must be between 0 and " + dataBasePerson.getIDRange());
+            input = scanner.nextLine();
+            try{
+                int ID = Integer.parseInt(input);
+                if(!dataBasePerson.addNew(ID, newPerson)){
+                    dataBasePerson.addNew(newPerson);
+                }
+            }
+            catch (IllegalArgumentException e){
+                dataBasePerson.addNew(newPerson);
+            }
+        }
+        else{
+            dataBasePerson.addNew(newPerson);
+        }
+
+        System.out.println("Thank you. Optional information WIP");
     }
 
     private static void searchPerson() {
