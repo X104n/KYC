@@ -75,4 +75,15 @@ public class DataBasePerson implements IDataBase{
         }
         return search;
     }
+
+    public ArrayList<Person> countrySearch(String country){
+        ArrayList<Person> search = new ArrayList<>();
+        for (int i : dataBase.keySet()){
+            String dataCountry = dataBase.get(i).getCountry();
+            if(dataCountry.contains(country)){
+                search.add(dataBase.get(i));
+            }
+        }
+        return search;
+    }
 }

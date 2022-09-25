@@ -34,7 +34,7 @@ public class KYC_Terminal {
             } else if (input.toLowerCase().equals("p")) {
                 dataBasePerson.printDatabase();
             } else if (input.toLowerCase().equals("c")) {
-                commands();
+                commands(false);
             } else {
                 System.out.println("Command not found. Please try again. Press (c) for commands");
             }
@@ -55,8 +55,9 @@ public class KYC_Terminal {
                 searchPerson();
             } else if (input.toLowerCase().equals("p")) {
                 dataBasePerson.printDatabase();
+                System.out.println();
             } else if (input.toLowerCase().equals("c")) {
-                commands();
+                commands(true);
             } else {
                 System.out.println("Command not found. Please try again. Press (c) for commands");
             }
@@ -64,9 +65,10 @@ public class KYC_Terminal {
 
     }
 
-    private static void commands() {
-        System.out.println("Search for pearson: (s)");
-        System.out.println("Add new person: (a)");
+    private static void commands(boolean admin) {
+        System.out.println("Search for person: (s)");
+        if (admin)
+            System.out.println("Add new person: (a)");
         System.out.println("Print database: (p)");
         System.out.println("Quit: (q)");
     }
@@ -76,13 +78,13 @@ public class KYC_Terminal {
         System.out.println("Please enter the name of the person");
         String name = scanner.nextLine();
 
-        System.out.println("Please enter the persons birth data (dd-mm-yyyy)");
+        System.out.println("Please enter the person's birth data (dd-mm-yyyy)");
         String birth = scanner.nextLine();
 
         System.out.println("Please enter the country the person is located");
         String country = scanner.nextLine();
 
-        System.out.println("Please enter if the pearson is Politically Exposed (y/n)");
+        System.out.println("Please enter if the person is Politically Exposed (y/n)");
         boolean isPep = false;
 
         while (true) {
@@ -125,19 +127,16 @@ public class KYC_Terminal {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the ID of the pearson in question. Press (n) if you don't know the ID");
         String input = scanner.nextLine();
-        while (true) {
-            try {
-                int ID = Integer.parseInt(input);
-                searchID(ID);
-                break;
-            } catch (NumberFormatException e) {
-                if (input.toLowerCase().equals("n")) {
-                    searchUnknown();
-                    break;
-                }
-                System.out.println("Please try again");
+        try {
+            int ID = Integer.parseInt(input);
+            searchID(ID);
+        } catch (NumberFormatException e) {
+            if (input.toLowerCase().equals("n")) {
+                searchUnknown();
             }
         }
+        System.out.println();
+
     }
 
     private static void searchID(int ID) {
@@ -161,6 +160,16 @@ public class KYC_Terminal {
                 System.out.println("There where " + foundNames.size() + " results for " + name);
                 for (Person p : foundNames) {
                     p.printInfo();
+                }
+                break;
+            } else if (input.toLowerCase().equals("c")) {
+                System.out.println("Enter a country you would like to search: ");
+                String country = scanner.nextLine();
+                ArrayList<Person> foundPersons = dataBasePerson.countrySearch(country);
+                System.out.println("There where " + foundPersons.size() + " results for " + country);
+                for (Person p : foundPersons) {
+                    p.printInfo();
+                    System.out.println();
                 }
                 break;
             } else {
