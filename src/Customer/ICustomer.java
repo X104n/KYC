@@ -1,3 +1,5 @@
+package Customer;
+
 import java.util.List;
 
 public interface ICustomer {

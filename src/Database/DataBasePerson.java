@@ -1,16 +1,17 @@
 package Database;
 
+import Customer.Person;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
-public class DataBasePerson implements IDataBase {
-    private HashMap<Integer, List<String>> dataBase = new HashMap<Integer, List<String>>();
+public class DataBasePerson implements IDataBase{
+    private HashMap<Integer, Person> dataBase = new HashMap<Integer, Person>();
     private Random random = new Random();
     private int idRange;
 
     @Override
-    public boolean addNew(int id, List<String> data){
+    public boolean addNew(int id, Person data){
         // Check if the ID is valid
         if(dataBase.containsKey(id)){
             return false;
@@ -20,11 +21,12 @@ public class DataBasePerson implements IDataBase {
             idRange = idRange^2;
         }
         dataBase.put(id, data);
+        Person person = new Person();
         return true;
     }
 
     @Override
-    public void addNew(List<String> data){
+    public void addNew(Person data){
         // Extends the ID range if there is a lot of customer
         if(dataBase.size() >= idRange/2){
             idRange = idRange^2;
@@ -40,7 +42,7 @@ public class DataBasePerson implements IDataBase {
     }
 
     @Override
-    public List<String> updateCustomer(int ID) {
+    public Person updateCustomer(int ID) {
         return dataBase.get(ID);
     }
 

@@ -1,16 +1,21 @@
+package Customer;
+
+import Customer.ICustomer;
+
 public class Person implements ICustomer {
 
     String name;
-    String org;
+    String birth;
+    String country;
     boolean isPep;
 
 
-    public void Person(String name, String org, boolean isPep){
+    public void Person(String name, String birth, String country, boolean isPep){
 
         this.name = name;
-        this.org = org;
+        this.birth = birth;
+        this.country = country;
         this.isPep = isPep;
-
     }
 
     @Override
