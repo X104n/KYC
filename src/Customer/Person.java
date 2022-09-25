@@ -2,6 +2,7 @@ package Customer;
 
 import Customer.ICustomer;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,13 @@ public class Person implements ICustomer {
 
     public void move(String newCountry){
         this.country = newCountry;
+    }
+
+    public void printInfo(){
+        System.out.println("Name: " + name);
+        System.out.println("Birth: " + birth);
+        System.out.println("Country: " + country);
+        System.out.println("Politically exposed: " + isPep);
     }
 
 }

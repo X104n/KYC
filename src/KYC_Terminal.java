@@ -1,10 +1,11 @@
 import Customer.Person;
+import Database.DataBasePerson;
 
-import javax.sound.midi.Soundbank;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class KYC_Terminal {
+
+    private static DataBasePerson dataBasePerson = new DataBasePerson();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -64,15 +65,41 @@ public class KYC_Terminal {
         }
 
         Person newPerson = new Person(name, birth, country, isPep);
+        dataBasePerson.addNew(100, newPerson);
+        System.out.println("Thank you, optional information is in progress");
     }
 
     private static void searchPerson() {
-        System.out.println("Nothing here");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the ID of the pearson in question. Press (n) if you don't know the ID");
+        String input = scanner.nextLine();
+        while (true) {
+            try {
+                int ID = Integer.parseInt(input);
+                searchID(ID);
+                break;
+            } catch (NumberFormatException e) {
+                if (input.toLowerCase().equals("n")) {
+                    searchUnknown();
+                    break;
+                }
+                System.out.println("Please try again");
+            }
+        }
+    }
+
+    private static void searchID(int ID){
+        Person person = dataBasePerson.getCustomer(ID);
+        System.out.println("Printing info: ");
+        person.printInfo();
+    }
+
+    private static void searchUnknown() {
 
     }
 
     private static void printDatabase() {
-
+        dataBasePerson.printDatabase();
     }
 
 

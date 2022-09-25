@@ -41,7 +41,7 @@ public class DataBasePerson implements IDataBase{
     }
 
     @Override
-    public Person updateCustomer(int ID) {
+    public Person getCustomer(int ID) {
         return dataBase.get(ID);
     }
 
@@ -53,5 +53,9 @@ public class DataBasePerson implements IDataBase{
     @Override
     public int getIDRange() {
         return idRange;
+    }
+
+    public void printDatabase(){
+        System.out.println((dataBase.values()));
     }
 }

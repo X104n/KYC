@@ -2,8 +2,6 @@ package Database;
 
 import Customer.Person;
 
-import java.util.List;
-
 public interface IDataBase {
 
     int IDRange = 10000;
@@ -27,7 +25,7 @@ public interface IDataBase {
      * @param ID the ID of the customer
      * @return returns the data of the customer
      */
-    public Person updateCustomer(int ID);
+    public Person getCustomer(int ID);
 
     /**
      * Use to search for a customer
