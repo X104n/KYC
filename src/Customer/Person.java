@@ -2,12 +2,22 @@ package Customer;
 
 import Customer.ICustomer;
 
+import java.util.List;
+
 public class Person implements ICustomer {
 
-    String name;
-    String birth;
-    String country;
-    boolean isPep;
+    // Mandatory data
+    private String name;
+    private String birth;
+    private String country;
+    private boolean isPep;
+
+    // Optional data
+    List<String> alias;
+    List<String> sanctions;
+    List<String> phones;
+    List<String> emails;
+
 
 
     public void Person(String name, String birth, String country, boolean isPep){
@@ -16,15 +26,35 @@ public class Person implements ICustomer {
         this.birth = birth;
         this.country = country;
         this.isPep = isPep;
+
+    }
+
+    private void optionalData(List<String> alias, List<String> sanctions, List<String> phones, List<String> emails){
+        this.alias = alias;
+        this.sanctions = sanctions;
+        this.phones = phones;
+        this.emails = emails;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
+    public String getBirth(){
+        return birth;
+    }
+
+    public String getCountry(){
+        return country;
+    }
     @Override
     public boolean isPep() {
-        return false;
+        return isPep;
     }
+
+    public void move(String newCountry){
+        this.country = newCountry;
+    }
+
 }
