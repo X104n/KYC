@@ -28,11 +28,6 @@ public interface IDataBase {
     public Person getCustomer(int ID);
 
     /**
-     * Use to search for a customer
-     */
-    public void searchCustomer();
-
-    /**
      * @return the ID range
      */
     public int getIDRange();

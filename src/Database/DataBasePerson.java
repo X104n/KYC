@@ -48,11 +48,6 @@ public class DataBasePerson implements IDataBase{
     }
 
     @Override
-    public void searchCustomer() {
-
-    }
-
-    @Override
     public int getIDRange() {
         return idRange;
     }
