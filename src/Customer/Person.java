@@ -2,6 +2,7 @@ package Customer;
 
 import Customer.ICustomer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person implements ICustomer {
@@ -19,17 +20,15 @@ public class Person implements ICustomer {
     List<String> emails;
 
 
-
-    public void Person(String name, String birth, String country, boolean isPep){
+    public Person(String name, String birth, String country, boolean isPep){
 
         this.name = name;
         this.birth = birth;
         this.country = country;
         this.isPep = isPep;
-
     }
 
-    private void optionalData(List<String> alias, List<String> sanctions, List<String> phones, List<String> emails){
+    public void optionalData(List<String> alias, List<String> sanctions, List<String> phones, List<String> emails){
         this.alias = alias;
         this.sanctions = sanctions;
         this.phones = phones;

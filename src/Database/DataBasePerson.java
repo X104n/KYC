@@ -21,7 +21,6 @@ public class DataBasePerson implements IDataBase{
             idRange = idRange^2;
         }
         dataBase.put(id, data);
-        Person person = new Person();
         return true;
     }
 
